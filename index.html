@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,23 +15,23 @@ nav a{color:white;text-decoration:none;margin:8px}
 .container{max-width:1000px;margin:30px auto;padding:20px}
 .hero{text-align:center;padding:35px;background:white;border-radius:12px;margin-bottom:25px}
 .hero h2{color:#174ea6;margin-bottom:12px}
-.auth-box{background:white;max-width:450px;margin:25px auto;padding:25px;border-radius:12px;box-shadow:0 3px 12px #0001}
-.dashboard-box{background:white;max-width:900px;margin:25px auto;padding:25px;border-radius:12px;box-shadow:0 3px 12px #0001}
+.auth-box,.dashboard-box{background:white;max-width:900px;margin:25px auto;padding:25px;border-radius:12px;box-shadow:0 3px 12px #0001}
+.auth-box{max-width:450px}
 .profile-header{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;border-bottom:1px solid #eee;padding-bottom:15px;margin-bottom:20px}
 input,select{width:100%;padding:13px;margin:8px 0;border:1px solid #ccc;border-radius:7px;font-size:15px;background:white}
 button{background:#174ea6;color:white;border:0;padding:12px 18px;border-radius:7px;cursor:pointer;margin:7px 3px;font-size:15px}
 button:hover{background:#123d80}
 .btn-secondary{background:#5f6368}
-.btn-secondary:hover{background:#3c4043}
 .btn-danger{background:#d93025}
-.btn-danger:hover{background:#a50e0e}
 .switch{color:#174ea6;cursor:pointer;text-align:center;margin-top:15px}
 .message{margin-top:12px;color:#174ea6;text-align:center;overflow-wrap:anywhere}
 .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;margin-top:20px}
-.card{background:#f8faff;border:1px solid #d2e3fc;padding:25px;border-radius:10px;text-align:center;box-shadow:0 2px 8px #0001;cursor:pointer;transition:transform 0.2s, box-shadow 0.2s}
-.card:hover{transform:translateY(-4px);box-shadow:0 6px 15px rgba(23,78,166,0.15);border-color:#174ea6}
+.card{background:#f8faff;border:1px solid #d2e3fc;padding:25px;border-radius:10px;text-align:center;cursor:pointer}
+.card:hover{border-color:#174ea6}
 .card h3{color:#174ea6;margin-bottom:10px}
 .feature-view{background:#f8faff;border:1px solid #d2e3fc;padding:25px;border-radius:10px;margin-top:20px}
+.note-item{background:white;padding:15px;border:1px solid #d2e3fc;border-radius:8px;margin:12px 0}
+.note-item h4{color:#174ea6;margin-bottom:8px}
 .hidden{display:none}
 footer{background:#123d80;color:white;text-align:center;padding:20px;margin-top:35px}
 </style>
@@ -57,47 +58,35 @@ footer{background:#123d80;color:white;text-align:center;padding:20px;margin-top:
 
 <section id="account">
 
-<!-- Login / Register Box -->
 <div class="auth-box" id="authBox">
 
 <div id="registerForm">
 <h2>Student Registration</h2>
-
 <input type="text" id="studentName" placeholder="Student Name">
 <input type="email" id="registerEmail" placeholder="Email Address">
 <input type="password" id="registerPassword" placeholder="Create Password (Minimum 6 characters)">
 
 <select id="studentClass">
 <option value="">Select Class</option>
-<option>Class 1</option>
-<option>Class 2</option>
-<option>Class 3</option>
-<option>Class 4</option>
-<option>Class 5</option>
-<option>Class 6</option>
-<option>Class 7</option>
-<option>Class 8</option>
-<option>Class 9</option>
-<option>Class 10</option>
-<option>Class 11</option>
-<option>Class 12</option>
+<option>Class 1</option><option>Class 2</option>
+<option>Class 3</option><option>Class 4</option>
+<option>Class 5</option><option>Class 6</option>
+<option>Class 7</option><option>Class 8</option>
+<option>Class 9</option><option>Class 10</option>
+<option>Class 11</option><option>Class 12</option>
 <option>Other</option>
 </select>
 
 <select id="studentBoard">
 <option value="">Select Board</option>
-<option>CBSE</option>
-<option>ICSE</option>
-<option>MP Board</option>
-<option>UP Board</option>
+<option>CBSE</option><option>ICSE</option>
+<option>MP Board</option><option>UP Board</option>
 <option>Other State Board</option>
 </select>
 
 <select id="studentMedium">
 <option value="">Select Medium</option>
-<option>Hindi</option>
-<option>English</option>
-<option>Other</option>
+<option>Hindi</option><option>English</option><option>Other</option>
 </select>
 
 <button id="registerBtn">Create Account</button>
@@ -115,15 +104,14 @@ footer{background:#123d80;color:white;text-align:center;padding:20px;margin-top:
 <p class="message" id="authMessage"></p>
 </div>
 
-<!-- Student Dashboard -->
 <div id="dashboard" class="dashboard-box hidden">
 
 <div class="profile-header">
 <div>
 <h2>Welcome, <span id="dashboardName" style="color:#174ea6">Student</span>!</h2>
 <p style="margin-top:5px;color:#555">
-<span id="dashboardClass"></span> | 
-<span id="dashboardBoard"></span> | 
+<span id="dashboardClass"></span> |
+<span id="dashboardBoard"></span> |
 <span id="dashboardMedium"></span>
 </p>
 </div>
@@ -133,49 +121,37 @@ footer{background:#123d80;color:white;text-align:center;padding:20px;margin-top:
 </div>
 </div>
 
-<!-- Profile Update Section (Hidden by default for clean look) -->
 <div id="profileEditSection" class="hidden" style="background:#f9f9f9;padding:15px;border-radius:8px;margin-bottom:20px;border:1px solid #ddd">
 <h3>Update Your Profile</h3>
 <p id="dashboardEmail" style="font-size:14px;color:#666;margin-bottom:10px"></p>
 
 <select id="profileClass">
 <option value="">Select Class</option>
-<option>Class 1</option>
-<option>Class 2</option>
-<option>Class 3</option>
-<option>Class 4</option>
-<option>Class 5</option>
-<option>Class 6</option>
-<option>Class 7</option>
-<option>Class 8</option>
-<option>Class 9</option>
-<option>Class 10</option>
-<option>Class 11</option>
-<option>Class 12</option>
+<option>Class 1</option><option>Class 2</option>
+<option>Class 3</option><option>Class 4</option>
+<option>Class 5</option><option>Class 6</option>
+<option>Class 7</option><option>Class 8</option>
+<option>Class 9</option><option>Class 10</option>
+<option>Class 11</option><option>Class 12</option>
 <option>Other</option>
 </select>
 
 <select id="profileBoard">
 <option value="">Select Board</option>
-<option>CBSE</option>
-<option>ICSE</option>
-<option>MP Board</option>
-<option>UP Board</option>
+<option>CBSE</option><option>ICSE</option>
+<option>MP Board</option><option>UP Board</option>
 <option>Other State Board</option>
 </select>
 
 <select id="profileMedium">
 <option value="">Select Medium</option>
-<option>Hindi</option>
-<option>English</option>
-<option>Other</option>
+<option>Hindi</option><option>English</option><option>Other</option>
 </select>
 
 <button id="saveProfileBtn">Save Profile</button>
 <p class="message" id="profileMessage"></p>
 </div>
 
-<!-- 6 Feature Cards inside Dashboard -->
 <div id="dashboardCards">
 <h3 style="color:#174ea6;margin-bottom:10px">Your Learning Tools</h3>
 <div class="cards">
@@ -206,17 +182,14 @@ footer{background:#123d80;color:white;text-align:center;padding:20px;margin-top:
 </div>
 </div>
 
-<!-- Feature Workspace (Opens when a card is clicked) -->
 <div id="featureWorkspace" class="feature-view hidden">
 <button class="btn-secondary" onclick="closeFeature()">← Back to Dashboard</button>
-<h2 id="featureTitle" style="color:#174ea6;margin-top:15px">Feature Title</h2>
+<h2 id="featureTitle" style="color:#174ea6;margin-top:15px"></h2>
 <div id="featureContent" style="margin-top:15px"></div>
 </div>
 
 </div>
-
 </section>
-
 </main>
 
 <footer>
@@ -225,24 +198,16 @@ footer{background:#123d80;color:white;text-align:center;padding:20px;margin-top:
 
 <script type="module">
 
-import { initializeApp }
-from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
+import {initializeApp} from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
 
 import {
-getAuth,
-createUserWithEmailAndPassword,
-signInWithEmailAndPassword,
-updateProfile,
-onAuthStateChanged,
-signOut
+getAuth,createUserWithEmailAndPassword,
+signInWithEmailAndPassword,updateProfile,
+onAuthStateChanged,signOut
 } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-auth.js";
 
 import {
-getFirestore,
-doc,
-setDoc,
-getDoc,
-serverTimestamp
+getFirestore,doc,setDoc,getDoc,serverTimestamp
 } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore.js";
 
 const firebaseConfig = {
@@ -255,243 +220,330 @@ appId: "1:502944049249:web:91aba28fbe5601b9f9e220",
 measurementId: "G-VYTRG9Q88F"
 };
 
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const db = getFirestore(app);
+const app=initializeApp(firebaseConfig);
+const auth=getAuth(app);
+const db=getFirestore(app);
 
-const registerForm = document.getElementById("registerForm");
-const loginForm = document.getElementById("loginForm");
-const authBox = document.getElementById("authBox");
-const dashboard = document.getElementById("dashboard");
-const authMessage = document.getElementById("authMessage");
+const $=id=>document.getElementById(id);
+let currentStudentData={};
 
-let currentStudentData = {};
-
-document.getElementById("showLogin").onclick = () => {
-registerForm.classList.add("hidden");
-loginForm.classList.remove("hidden");
-authMessage.textContent = "";
+$("showLogin").onclick=()=>{
+$("registerForm").classList.add("hidden");
+$("loginForm").classList.remove("hidden");
+$("authMessage").textContent="";
 };
 
-document.getElementById("showRegister").onclick = () => {
-loginForm.classList.add("hidden");
-registerForm.classList.remove("hidden");
-authMessage.textContent = "";
+$("showRegister").onclick=()=>{
+$("loginForm").classList.add("hidden");
+$("registerForm").classList.remove("hidden");
+$("authMessage").textContent="";
 };
 
-// Toggle Profile Edit Section
-document.getElementById("toggleProfileBtn").onclick = () => {
-document.getElementById("profileEditSection").classList.toggle("hidden");
+$("toggleProfileBtn").onclick=()=>{
+$("profileEditSection").classList.toggle("hidden");
 };
 
-// Open Feature Card
-window.openFeature = (featureKey) => {
-document.getElementById("dashboardCards").classList.add("hidden");
-document.getElementById("featureWorkspace").classList.remove("hidden");
-
-const titleEl = document.getElementById("featureTitle");
-const contentEl = document.getElementById("featureContent");
-const studentInfo = `<strong>${currentStudentData.class || 'Your Class'} (${currentStudentData.board || 'Board'} - ${currentStudentData.medium || 'Medium'})</strong>`;
-
-const features = {
-notes: {
-title: "📚 Study Notes",
-html: `<p>Showing study notes for ${studentInfo}.</p><p style="margin-top:10px;color:#555"><em>Next Step: We will connect this section to Firebase to load real subject-wise PDFs and chapters!</em></p>`
+// Sample notes data: PDF links are placeholders.
+// Replace them with actual PDF URLs after uploading your notes.
+const notesData = {
+"Class 10": {
+"Science": [
+{chapter:"Chapter 1 - Chemical Reactions",pdf:""},
+{chapter:"Chapter 2 - Acids, Bases and Salts",pdf:""},
+{chapter:"Chapter 3 - Metals and Non-metals",pdf:""}
+],
+"Mathematics": [
+{chapter:"Chapter 1 - Real Numbers",pdf:""},
+{chapter:"Chapter 2 - Polynomials",pdf:""},
+{chapter:"Chapter 3 - Pair of Linear Equations",pdf:""}
+],
+"English": [
+{chapter:"Chapter 1 - Reading and Writing",pdf:""},
+{chapter:"Chapter 2 - Grammar",pdf:""}
+],
+"Social Science": [
+{chapter:"Chapter 1 - History",pdf:""},
+{chapter:"Chapter 2 - Geography",pdf:""}
+],
+"Hindi": [
+{chapter:"Chapter 1 - गद्य खंड",pdf:""},
+{chapter:"Chapter 2 - काव्य खंड",pdf:""}
+]
 },
-tests: {
-title: "📝 Online Tests",
-html: `<p>Practice tests for ${studentInfo}.</p><p style="margin-top:10px;color:#555"><em>Status: Coming soon in the next update.</em></p>`
-},
-live: {
-title: "🎥 Live Classes",
-html: `<p>Live classes schedule for ${studentInfo}.</p><p style="margin-top:10px;color:#555"><em>Status: Coming soon in the next update.</em></p>`
-},
-papers: {
-title: "📄 Previous Year Papers",
-html: `<p>Question papers for ${studentInfo}.</p><p style="margin-top:10px;color:#555"><em>Status: Coming soon in the next update.</em></p>`
-},
-ai: {
-title: "🤖 AI Paper Solver",
-html: `<p>Ask any question from ${studentInfo} syllabus.</p><p style="margin-top:10px;color:#555"><em>Status: Coming soon in the next update.</em></p>`
-},
-premium: {
-title: "⭐ Premium Account",
-html: `<p>Upgrade your account for ${studentInfo} full access.</p><p style="margin-top:10px;color:#555"><em>Status: Coming soon in the next update.</em></p>`
+"Class 12": {
+"Physics": [
+{chapter:"Chapter 1 - Electric Charges and Fields",pdf:""},
+{chapter:"Chapter 2 - Electrostatic Potential",pdf:""}
+],
+"Chemistry": [
+{chapter:"Chapter 1 - Solutions",pdf:""},
+{chapter:"Chapter 2 - Electrochemistry",pdf:""}
+],
+"Biology": [
+{chapter:"Chapter 1 - Reproduction in Organisms",pdf:""},
+{chapter:"Chapter 2 - Sexual Reproduction in Flowering Plants",pdf:""}
+],
+"Mathematics": [
+{chapter:"Chapter 1 - Relations and Functions",pdf:""},
+{chapter:"Chapter 2 - Inverse Trigonometric Functions",pdf:""}
+]
 }
 };
 
-titleEl.textContent = features[featureKey].title;
-contentEl.innerHTML = features[featureKey].html;
-};
+function renderNotes(){
+const studentClass=currentStudentData.class;
+const studentBoard=currentStudentData.board;
+const studentMedium=currentStudentData.medium;
 
-// Close Feature Card and return to Dashboard
-window.closeFeature = () => {
-document.getElementById("featureWorkspace").classList.add("hidden");
-document.getElementById("dashboardCards").classList.remove("hidden");
-};
+let html=`
+<h3>📚 Study Notes</h3>
+<p style="margin:10px 0">Your Class: <strong>${studentClass||"Not selected"}</strong> |
+Board: <strong>${studentBoard||"Not selected"}</strong> |
+Medium: <strong>${studentMedium||"Not selected"}</strong></p>
+`;
 
-// Student Registration
-document.getElementById("registerBtn").onclick = async () => {
-const name = document.getElementById("studentName").value.trim();
-const email = document.getElementById("registerEmail").value.trim();
-const password = document.getElementById("registerPassword").value;
-const studentClass = document.getElementById("studentClass").value;
-const board = document.getElementById("studentBoard").value;
-const medium = document.getElementById("studentMedium").value;
-
-if (!name || !email || !password || !studentClass || !board || !medium) {
-authMessage.textContent = "Please fill all fields.";
+if(!studentClass || !studentBoard || !studentMedium){
+html+=`<p>Please update your Class, Board and Medium in Edit Profile first.</p>`;
+$("featureContent").innerHTML=html;
 return;
 }
 
-if (password.length < 6) {
-authMessage.textContent = "Password must be at least 6 characters.";
-return;
-}
+html+=`
+<label for="subjectSelect"><strong>Select Subject</strong></label>
+<select id="subjectSelect">
+<option value="">Choose Subject</option>
+</select>
+<div id="chapterList"></div>
+`;
 
-try {
-authMessage.textContent = "Creating your account...";
-const result = await createUserWithEmailAndPassword(auth,email,password);
-await updateProfile(result.user,{displayName:name});
+$("featureContent").innerHTML=html;
 
-await setDoc(doc(db,"students",result.user.uid),{
-name:name,
-email:email,
-class:studentClass,
-board:board,
-medium:medium,
-createdAt:serverTimestamp()
+const subjects=notesData[studentClass]||{};
+const subjectSelect=$("subjectSelect");
+
+Object.keys(subjects).forEach(subject=>{
+const option=document.createElement("option");
+option.value=subject;
+option.textContent=subject;
+subjectSelect.appendChild(option);
 });
 
-authMessage.textContent = "Registration successful!";
-} catch(error) {
-authMessage.textContent = error.message;
-}
-};
+subjectSelect.onchange=()=>{
+const chapterList=$("chapterList");
+chapterList.innerHTML="";
+const chapters=subjects[subjectSelect.value]||[];
 
-// Student Login
-document.getElementById("loginBtn").onclick = async () => {
-const email = document.getElementById("loginEmail").value.trim();
-const password = document.getElementById("loginPassword").value;
-
-if (!email || !password) {
-authMessage.textContent = "Please enter email and password.";
+if(!chapters.length){
+chapterList.innerHTML="<p>No notes added for this subject yet.</p>";
 return;
 }
 
-try {
-authMessage.textContent = "Logging in...";
-await signInWithEmailAndPassword(auth,email,password);
-authMessage.textContent = "";
-} catch(error) {
-authMessage.textContent = error.message;
+chapters.forEach(item=>{
+const div=document.createElement("div");
+div.className="note-item";
+
+const heading=document.createElement("h4");
+heading.textContent=item.chapter;
+div.appendChild(heading);
+
+const info=document.createElement("p");
+info.textContent="Board: "+studentBoard+" | Medium: "+studentMedium;
+div.appendChild(info);
+
+if(item.pdf){
+const link=document.createElement("a");
+link.href=item.pdf;
+link.target="_blank";
+link.rel="noopener noreferrer";
+link.textContent="Open / Download PDF";
+div.appendChild(link);
+}else{
+const msg=document.createElement("p");
+msg.style.color="#777";
+msg.style.marginTop="8px";
+msg.textContent="PDF will be added soon.";
+div.appendChild(msg);
+}
+chapterList.appendChild(div);
+});
+};
+}
+
+window.openFeature=(featureKey)=>{
+$("dashboardCards").classList.add("hidden");
+$("featureWorkspace").classList.remove("hidden");
+
+const features={
+notes:{title:"📚 Study Notes"},
+tests:{title:"📝 Online Tests",html:"Online tests will be added in the next update."},
+live:{title:"🎥 Live Classes",html:"Live classes will be added in the next update."},
+papers:{title:"📄 Previous Year Papers",html:"Previous year papers will be added in the next update."},
+ai:{title:"🤖 AI Paper Solver",html:"AI Paper Solver will be added in the next update."},
+premium:{title:"⭐ Premium Account",html:"Premium services will be added in the next update."}
+};
+
+$("featureTitle").textContent=features[featureKey].title;
+
+if(featureKey==="notes"){
+renderNotes();
+}else{
+$("featureContent").textContent=features[featureKey].html;
 }
 };
 
-// Auth State Observer
-onAuthStateChanged(auth,async(user) => {
-if(user) {
-authBox.classList.add("hidden");
-dashboard.classList.remove("hidden");
+window.closeFeature=()=>{
+$("featureWorkspace").classList.add("hidden");
+$("dashboardCards").classList.remove("hidden");
+};
 
-try {
-const studentRef = doc(db,"students",user.uid);
-const studentSnap = await getDoc(studentRef);
+$("registerBtn").onclick=async()=>{
+const name=$("studentName").value.trim();
+const email=$("registerEmail").value.trim();
+const password=$("registerPassword").value;
+const studentClass=$("studentClass").value;
+const board=$("studentBoard").value;
+const medium=$("studentMedium").value;
 
-if(studentSnap.exists()) {
-currentStudentData = studentSnap.data();
-} else {
-currentStudentData = {
-name: user.displayName || "Student",
-email: user.email || "",
-class: "",
-board: "",
-medium: ""
+if(!name||!email||!password||!studentClass||!board||!medium){
+$("authMessage").textContent="Please fill all fields.";
+return;
+}
+if(password.length<6){
+$("authMessage").textContent="Password must be at least 6 characters.";
+return;
+}
+
+try{
+$("authMessage").textContent="Creating account...";
+const result=await createUserWithEmailAndPassword(auth,email,password);
+await updateProfile(result.user,{displayName:name});
+
+const profile={
+name,email,class:studentClass,board,medium,
+createdAt:serverTimestamp()
+};
+await setDoc(doc(db,"students",result.user.uid),profile);
+$("authMessage").textContent="Registration successful!";
+}catch(error){
+$("authMessage").textContent=error.message;
+}
+};
+
+$("loginBtn").onclick=async()=>{
+const email=$("loginEmail").value.trim();
+const password=$("loginPassword").value;
+if(!email||!password){
+$("authMessage").textContent="Please enter email and password.";
+return;
+}
+try{
+$("authMessage").textContent="Logging in...";
+await signInWithEmailAndPassword(auth,email,password);
+$("authMessage").textContent="";
+}catch(error){
+$("authMessage").textContent=error.message;
+}
+};
+
+onAuthStateChanged(auth,async(user)=>{
+if(user){
+$("authBox").classList.add("hidden");
+$("dashboard").classList.remove("hidden");
+
+try{
+const studentRef=doc(db,"students",user.uid);
+const studentSnap=await getDoc(studentRef);
+
+if(studentSnap.exists()){
+currentStudentData=studentSnap.data();
+}else{
+currentStudentData={
+name:user.displayName||"Student",
+email:user.email||"",
+class:"",
+board:"",
+medium:""
 };
 await setDoc(studentRef,{
 ...currentStudentData,
-createdAt: serverTimestamp()
+createdAt:serverTimestamp()
 });
 }
 
-document.getElementById("dashboardName").textContent = currentStudentData.name || user.displayName || "Student";
-document.getElementById("dashboardEmail").textContent = "Email: " + (currentStudentData.email || user.email || "");
-document.getElementById("dashboardClass").textContent = "Class: " + (currentStudentData.class || "Not selected");
-document.getElementById("dashboardBoard").textContent = "Board: " + (currentStudentData.board || "Not selected");
-document.getElementById("dashboardMedium").textContent = "Medium: " + (currentStudentData.medium || "Not selected");
+$("dashboardName").textContent=currentStudentData.name||"Student";
+$("dashboardEmail").textContent="Email: "+(currentStudentData.email||user.email||"");
+$("dashboardClass").textContent="Class: "+(currentStudentData.class||"Not selected");
+$("dashboardBoard").textContent="Board: "+(currentStudentData.board||"Not selected");
+$("dashboardMedium").textContent="Medium: "+(currentStudentData.medium||"Not selected");
 
-document.getElementById("profileClass").value = currentStudentData.class || "";
-document.getElementById("profileBoard").value = currentStudentData.board || "";
-document.getElementById("profileMedium").value = currentStudentData.medium || "";
+$("profileClass").value=currentStudentData.class||"";
+$("profileBoard").value=currentStudentData.board||"";
+$("profileMedium").value=currentStudentData.medium||"";
 
-} catch(error) {
-console.error("Profile loading error:",error);
-document.getElementById("profileMessage").textContent = "Profile error: " + error.message;
+}catch(error){
+console.error(error);
+$("profileMessage").textContent="Profile error: "+error.message;
 }
-
-} else {
-dashboard.classList.add("hidden");
-authBox.classList.remove("hidden");
-closeFeature();
+}else{
+$("dashboard").classList.add("hidden");
+$("authBox").classList.remove("hidden");
+window.closeFeature();
 }
 });
 
-// Save or Update Student Profile
-document.getElementById("saveProfileBtn").onclick = async () => {
-const user = auth.currentUser;
-if(!user) return;
+$("saveProfileBtn").onclick=async()=>{
+const user=auth.currentUser;
+if(!user)return;
 
-const studentClass = document.getElementById("profileClass").value;
-const board = document.getElementById("profileBoard").value;
-const medium = document.getElementById("profileMedium").value;
+const studentClass=$("profileClass").value;
+const board=$("profileBoard").value;
+const medium=$("profileMedium").value;
 
-if(!studentClass || !board || !medium) {
-document.getElementById("profileMessage").textContent = "Please select Class, Board and Medium.";
+if(!studentClass||!board||!medium){
+$("profileMessage").textContent="Please select Class, Board and Medium.";
 return;
 }
 
-try {
-document.getElementById("profileMessage").textContent = "Saving profile...";
+try{
+$("profileMessage").textContent="Saving profile...";
 
 await setDoc(doc(db,"students",user.uid),{
-name: currentStudentData.name || user.displayName || "Student",
-email: user.email || "",
-class: studentClass,
-board: board,
-medium: medium,
-createdAt: currentStudentData.createdAt || serverTimestamp()
+name:currentStudentData.name||user.displayName||"Student",
+email:user.email||"",
+class:studentClass,
+board,
+medium,
+createdAt:currentStudentData.createdAt||serverTimestamp()
 });
 
-currentStudentData.class = studentClass;
-currentStudentData.board = board;
-currentStudentData.medium = medium;
+currentStudentData.class=studentClass;
+currentStudentData.board=board;
+currentStudentData.medium=medium;
 
-document.getElementById("dashboardClass").textContent = "Class: " + studentClass;
-document.getElementById("dashboardBoard").textContent = "Board: " + board;
-document.getElementById("dashboardMedium").textContent = "Medium: " + medium;
+$("dashboardClass").textContent="Class: "+studentClass;
+$("dashboardBoard").textContent="Board: "+board;
+$("dashboardMedium").textContent="Medium: "+medium;
 
-document.getElementById("profileMessage").textContent = "Profile saved successfully!";
-setTimeout(() => {
-document.getElementById("profileEditSection").classList.add("hidden");
-document.getElementById("profileMessage").textContent = "";
-}, 1500);
+$("profileMessage").textContent="Profile saved successfully!";
+setTimeout(()=>{
+$("profileEditSection").classList.add("hidden");
+$("profileMessage").textContent="";
+},1500);
 
-} catch(error) {
-document.getElementById("profileMessage").textContent = "Error: " + error.message;
+}catch(error){
+$("profileMessage").textContent="Error: "+error.message;
 }
 };
 
-// Student Logout
-document.getElementById("logoutBtn").onclick = async () => {
-try {
+$("logoutBtn").onclick=async()=>{
+try{
 await signOut(auth);
-authMessage.textContent = "Logged out successfully.";
-} catch(error) {
-authMessage.textContent = error.message;
+$("authMessage").textContent="Logged out successfully.";
+}catch(error){
+$("authMessage").textContent=error.message;
 }
 };
 
 </script>
-
 </body>
 </html>
