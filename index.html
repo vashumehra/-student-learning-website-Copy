@@ -94,7 +94,6 @@ footer{background:#123d80;color:white;text-align:center;padding:20px;margin-top:
 </select>
 
 <button id="registerBtn">Create Account</button>
-
 <p class="switch" id="showLogin">Already have an account? Login</p>
 </div>
 
@@ -116,7 +115,45 @@ footer{background:#123d80;color:white;text-align:center;padding:20px;margin-top:
 <p id="dashboardClass"></p>
 <p id="dashboardBoard"></p>
 <p id="dashboardMedium"></p>
+
+<h3 style="margin-top:20px">Update Your Profile</h3>
+
+<select id="profileClass">
+<option value="">Select Class</option>
+<option>Class 1</option>
+<option>Class 2</option>
+<option>Class 3</option>
+<option>Class 4</option>
+<option>Class 5</option>
+<option>Class 6</option>
+<option>Class 7</option>
+<option>Class 8</option>
+<option>Class 9</option>
+<option>Class 10</option>
+<option>Class 11</option>
+<option>Class 12</option>
+<option>Other</option>
+</select>
+
+<select id="profileBoard">
+<option value="">Select Board</option>
+<option>CBSE</option>
+<option>ICSE</option>
+<option>MP Board</option>
+<option>UP Board</option>
+<option>Other State Board</option>
+</select>
+
+<select id="profileMedium">
+<option value="">Select Medium</option>
+<option>Hindi</option>
+<option>English</option>
+<option>Other</option>
+</select>
+
+<button id="saveProfileBtn">Save Profile</button>
 <button id="logoutBtn">Logout</button>
+<p class="message" id="profileMessage"></p>
 </div>
 
 </section>
@@ -180,6 +217,8 @@ const loginForm = document.getElementById("loginForm");
 const authBox = document.getElementById("authBox");
 const dashboard = document.getElementById("dashboard");
 const authMessage = document.getElementById("authMessage");
+
+let currentStudentData = {};
 
 document.getElementById("showLogin").onclick = () => {
 registerForm.classList.add("hidden");
@@ -261,7 +300,7 @@ authMessage.textContent = error.message;
 
 };
 
-// Student Dashboard
+// Student Dashboard and Old Account Profile Creation
 
 onAuthStateChanged(auth,async(user) => {
 
@@ -274,19 +313,56 @@ document.getElementById("dashboardName").textContent = user.displayName || "Stud
 document.getElementById("dashboardEmail").textContent = user.email || "";
 
 try {
+
 const studentRef = doc(db,"students",user.uid);
 const studentSnap = await getDoc(studentRef);
 
 if(studentSnap.exists()) {
-const data = studentSnap.data();
 
-document.getElementById("dashboardName").textContent = data.name || user.displayName || "Student";
-document.getElementById("dashboardClass").textContent = "Class: " + (data.class || "");
-document.getElementById("dashboardBoard").textContent = "Board: " + (data.board || "");
-document.getElementById("dashboardMedium").textContent = "Medium: " + (data.medium || "");
+currentStudentData = studentSnap.data();
+
+} else {
+
+currentStudentData = {
+name: user.displayName || "Student",
+email: user.email || "",
+class: "",
+board: "",
+medium: ""
+};
+
+await setDoc(studentRef,{
+...currentStudentData,
+createdAt: serverTimestamp()
+});
+
 }
+
+document.getElementById("dashboardName").textContent =
+currentStudentData.name || user.displayName || "Student";
+
+document.getElementById("dashboardEmail").textContent =
+currentStudentData.email || user.email || "";
+
+document.getElementById("dashboardClass").textContent =
+"Class: " + (currentStudentData.class || "Not selected");
+
+document.getElementById("dashboardBoard").textContent =
+"Board: " + (currentStudentData.board || "Not selected");
+
+document.getElementById("dashboardMedium").textContent =
+"Medium: " + (currentStudentData.medium || "Not selected");
+
+document.getElementById("profileClass").value = currentStudentData.class || "";
+document.getElementById("profileBoard").value = currentStudentData.board || "";
+document.getElementById("profileMedium").value = currentStudentData.medium || "";
+
 } catch(error) {
+
 console.error("Profile loading error:",error);
+document.getElementById("profileMessage").textContent =
+"Profile error: " + error.message;
+
 }
 
 } else {
@@ -297,6 +373,60 @@ authBox.classList.remove("hidden");
 }
 
 });
+
+// Save or Update Student Profile
+
+document.getElementById("saveProfileBtn").onclick = async () => {
+
+const user = auth.currentUser;
+
+if(!user) {
+document.getElementById("profileMessage").textContent = "Please login first.";
+return;
+}
+
+const studentClass = document.getElementById("profileClass").value;
+const board = document.getElementById("profileBoard").value;
+const medium = document.getElementById("profileMedium").value;
+
+if(!studentClass || !board || !medium) {
+document.getElementById("profileMessage").textContent =
+"Please select Class, Board and Medium.";
+return;
+}
+
+try {
+
+document.getElementById("profileMessage").textContent = "Saving profile...";
+
+await setDoc(doc(db,"students",user.uid),{
+name: currentStudentData.name || user.displayName || "Student",
+email: user.email || "",
+class: studentClass,
+board: board,
+medium: medium,
+createdAt: currentStudentData.createdAt || serverTimestamp()
+});
+
+currentStudentData.class = studentClass;
+currentStudentData.board = board;
+currentStudentData.medium = medium;
+
+document.getElementById("dashboardClass").textContent = "Class: " + studentClass;
+document.getElementById("dashboardBoard").textContent = "Board: " + board;
+document.getElementById("dashboardMedium").textContent = "Medium: " + medium;
+
+document.getElementById("profileMessage").textContent =
+"Profile saved successfully!";
+
+} catch(error) {
+
+document.getElementById("profileMessage").textContent =
+"Error: " + error.message;
+
+}
+
+};
 
 // Student Logout
 
