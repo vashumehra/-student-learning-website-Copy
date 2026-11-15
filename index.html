@@ -2,447 +2,312 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Student Learning Platform</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Learning Platform</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      font-family: Arial, sans-serif;
-      background: #f3f6fb;
-      color: #222;
-    }
-
-    header {
-      background: #174ea6;
-      color: white;
-      padding: 22px;
-      text-align: center;
-    }
-
-    nav {
-      background: #123d80;
-      padding: 15px;
-      text-align: center;
-    }
-
-    nav a {
-      color: white;
-      text-decoration: none;
-      margin: 8px;
-    }
-
-    .container {
-      max-width: 1000px;
-      margin: 30px auto;
-      padding: 20px;
-    }
-
-    .hero {
-      text-align: center;
-      padding: 35px 15px;
-      background: white;
-      border-radius: 12px;
-      margin-bottom: 25px;
-    }
-
-    .hero h2 {
-      color: #174ea6;
-      margin-bottom: 12px;
-    }
-
-    .auth-box {
-      background: white;
-      max-width: 430px;
-      margin: 25px auto;
-      padding: 25px;
-      border-radius: 12px;
-      box-shadow: 0 3px 12px rgba(0,0,0,0.08);
-    }
-
-    input {
-      width: 100%;
-      padding: 13px;
-      margin: 9px 0;
-      border: 1px solid #ccc;
-      border-radius: 7px;
-      font-size: 15px;
-    }
-
-    button {
-      background: #174ea6;
-      color: white;
-      border: none;
-      padding: 12px 18px;
-      border-radius: 7px;
-      cursor: pointer;
-      margin: 7px 3px;
-      font-size: 15px;
-    }
-
-    button:hover {
-      background: #123d80;
-    }
-
-    .switch {
-      color: #174ea6;
-      cursor: pointer;
-      text-align: center;
-      margin-top: 15px;
-    }
-
-    .message {
-      margin-top: 12px;
-      color: #174ea6;
-      text-align: center;
-      overflow-wrap: anywhere;
-    }
-
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-      gap: 18px;
-      margin-top: 25px;
-    }
-
-    .card {
-      background: white;
-      padding: 25px;
-      border-radius: 10px;
-      text-align: center;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.06);
-    }
-
-    .card h3 {
-      color: #174ea6;
-      margin-bottom: 10px;
-    }
-
-    .hidden {
-      display: none;
-    }
-
-    footer {
-      background: #123d80;
-      color: white;
-      text-align: center;
-      padding: 20px;
-      margin-top: 35px;
-    }
-  </style>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,sans-serif;background:#f3f6fb;color:#222}
+header{background:#174ea6;color:white;padding:22px;text-align:center}
+nav{background:#123d80;padding:15px;text-align:center}
+nav a{color:white;text-decoration:none;margin:8px}
+.container{max-width:1000px;margin:30px auto;padding:20px}
+.hero{text-align:center;padding:35px;background:white;border-radius:12px;margin-bottom:25px}
+.hero h2{color:#174ea6;margin-bottom:12px}
+.auth-box{background:white;max-width:450px;margin:25px auto;padding:25px;border-radius:12px;box-shadow:0 3px 12px #0001}
+input,select{width:100%;padding:13px;margin:8px 0;border:1px solid #ccc;border-radius:7px;font-size:15px;background:white}
+button{background:#174ea6;color:white;border:0;padding:12px 18px;border-radius:7px;cursor:pointer;margin:7px 3px;font-size:15px}
+button:hover{background:#123d80}
+.switch{color:#174ea6;cursor:pointer;text-align:center;margin-top:15px}
+.message{margin-top:12px;color:#174ea6;text-align:center;overflow-wrap:anywhere}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:18px;margin-top:25px}
+.card{background:white;padding:25px;border-radius:10px;text-align:center;box-shadow:0 3px 10px #0001}
+.card h3{color:#174ea6;margin-bottom:10px}
+.hidden{display:none}
+footer{background:#123d80;color:white;text-align:center;padding:20px;margin-top:35px}
+</style>
 </head>
 
 <body>
 
 <header>
-  <h1>Student Learning Platform</h1>
-  <p>Your Complete Online Education Platform</p>
+<h1>Student Learning Platform</h1>
+<p>Your Complete Online Education Platform</p>
 </header>
 
 <nav>
-  <a href="#home">Home</a>
-  <a href="#courses">Study Material</a>
-  <a href="#account">Student Account</a>
+<a href="#home">Home</a>
+<a href="#courses">Study Material</a>
+<a href="#account">Student Account</a>
 </nav>
 
 <main class="container">
 
-  <section class="hero" id="home">
-    <h2>Welcome to Student Learning Platform</h2>
-    <p>Learn, Practice and Achieve Your Educational Goals.</p>
-  </section>
+<section class="hero" id="home">
+<h2>Welcome to Student Learning Platform</h2>
+<p>Learn, Practice and Achieve Your Educational Goals.</p>
+</section>
 
-  <!-- Registration and Login -->
+<section id="account">
 
-  <section id="account">
+<div class="auth-box" id="authBox">
 
-    <div class="auth-box" id="authBox">
+<div id="registerForm">
+<h2>Student Registration</h2>
 
-      <div id="registerForm">
-        <h2>Student Registration</h2>
+<input type="text" id="studentName" placeholder="Student Name">
+<input type="email" id="registerEmail" placeholder="Email Address">
+<input type="password" id="registerPassword" placeholder="Create Password (Minimum 6 characters)">
 
-        <input
-          type="text"
-          id="studentName"
-          placeholder="Enter Student Name"
-          autocomplete="name"
-        >
+<select id="studentClass">
+<option value="">Select Class</option>
+<option>Class 1</option>
+<option>Class 2</option>
+<option>Class 3</option>
+<option>Class 4</option>
+<option>Class 5</option>
+<option>Class 6</option>
+<option>Class 7</option>
+<option>Class 8</option>
+<option>Class 9</option>
+<option>Class 10</option>
+<option>Class 11</option>
+<option>Class 12</option>
+<option>Other</option>
+</select>
 
-        <input
-          type="email"
-          id="registerEmail"
-          placeholder="Enter Email Address"
-          autocomplete="email"
-        >
+<select id="studentBoard">
+<option value="">Select Board</option>
+<option>CBSE</option>
+<option>ICSE</option>
+<option>MP Board</option>
+<option>UP Board</option>
+<option>Other State Board</option>
+</select>
 
-        <input
-          type="password"
-          id="registerPassword"
-          placeholder="Create Password (Minimum 6 characters)"
-          autocomplete="new-password"
-        >
+<select id="studentMedium">
+<option value="">Select Medium</option>
+<option>Hindi</option>
+<option>English</option>
+<option>Other</option>
+</select>
 
-        <button id="registerBtn">Create Account</button>
+<button id="registerBtn">Create Account</button>
 
-        <p class="switch" id="showLogin">
-          Already have an account? Login
-        </p>
-      </div>
+<p class="switch" id="showLogin">Already have an account? Login</p>
+</div>
 
-      <div id="loginForm" class="hidden">
-        <h2>Student Login</h2>
+<div id="loginForm" class="hidden">
+<h2>Student Login</h2>
+<input type="email" id="loginEmail" placeholder="Email Address">
+<input type="password" id="loginPassword" placeholder="Password">
+<button id="loginBtn">Login</button>
+<p class="switch" id="showRegister">New Student? Create Account</p>
+</div>
 
-        <input
-          type="email"
-          id="loginEmail"
-          placeholder="Enter Email Address"
-          autocomplete="email"
-        >
+<p class="message" id="authMessage"></p>
+</div>
 
-        <input
-          type="password"
-          id="loginPassword"
-          placeholder="Enter Password"
-          autocomplete="current-password"
-        >
+<div id="dashboard" class="auth-box hidden">
+<h2>Student Dashboard</h2>
+<p>Welcome, <strong id="dashboardName">Student</strong>!</p>
+<p id="dashboardEmail"></p>
+<p id="dashboardClass"></p>
+<p id="dashboardBoard"></p>
+<p id="dashboardMedium"></p>
+<button id="logoutBtn">Logout</button>
+</div>
 
-        <button id="loginBtn">Login</button>
+</section>
 
-        <p class="switch" id="showRegister">
-          New Student? Create Account
-        </p>
-      </div>
-
-      <p class="message" id="authMessage"></p>
-
-    </div>
-
-    <!-- Student Dashboard -->
-
-    <div id="dashboard" class="auth-box hidden">
-
-      <h2>Student Dashboard</h2>
-
-      <p>Welcome, <strong id="dashboardName">Student</strong>!</p>
-
-      <p id="dashboardEmail"></p>
-
-      <p class="message">
-        Your student account is active.
-      </p>
-
-      <button id="logoutBtn">Logout</button>
-
-    </div>
-
-  </section>
-
-  <!-- Study Features -->
-
-  <section id="courses">
-
-    <h2 style="text-align:center; color:#174ea6;">
-      Learning Features
-    </h2>
-
-    <div class="cards">
-
-      <div class="card">
-        <h3>Study Notes</h3>
-        <p>Access subject-wise study notes.</p>
-      </div>
-
-      <div class="card">
-        <h3>Online Tests</h3>
-        <p>Practice tests and improve performance.</p>
-      </div>
-
-      <div class="card">
-        <h3>Live Classes</h3>
-        <p>Join live learning sessions.</p>
-      </div>
-
-      <div class="card">
-        <h3>Previous Papers</h3>
-        <p>Prepare with previous year question papers.</p>
-      </div>
-
-      <div class="card">
-        <h3>AI Paper Solver</h3>
-        <p>Get help with questions and solutions.</p>
-      </div>
-
-      <div class="card">
-        <h3>Premium Account</h3>
-        <p>Explore additional learning features.</p>
-      </div>
-
-    </div>
-
-  </section>
+<section id="courses">
+<h2 style="text-align:center;color:#174ea6">Learning Features</h2>
+<div class="cards">
+<div class="card"><h3>Study Notes</h3><p>Access subject-wise study notes.</p></div>
+<div class="card"><h3>Online Tests</h3><p>Practice tests and improve performance.</p></div>
+<div class="card"><h3>Live Classes</h3><p>Join live learning sessions.</p></div>
+<div class="card"><h3>Previous Papers</h3><p>Prepare with previous year question papers.</p></div>
+<div class="card"><h3>AI Paper Solver</h3><p>Get help with questions and solutions.</p></div>
+<div class="card"><h3>Premium Account</h3><p>Explore additional learning features.</p></div>
+</div>
+</section>
 
 </main>
 
 <footer>
-  <p>© 2026 Student Learning Platform. All Rights Reserved.</p>
+<p>© 2026 Student Learning Platform. All Rights Reserved.</p>
 </footer>
-
-<!-- Firebase Authentication -->
 
 <script type="module">
 
-  import { initializeApp }
-    from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
 
-  import {
-    getAuth,
-    createUserWithEmailAndPassword,
-    signInWithEmailAndPassword,
-    updateProfile,
-    onAuthStateChanged,
-    signOut
-  } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-auth.js";
+import {
+getAuth,
+createUserWithEmailAndPassword,
+signInWithEmailAndPassword,
+updateProfile,
+onAuthStateChanged,
+signOut
+} from "https://www.gstatic.com/firebasejs/11.0.0/firebase-auth.js";
 
-  const firebaseConfig = {
-    apiKey: "AIzaSyAPFaFg4ofTZQATre1qnHPur_Xz8fLJOFE",
-    authDomain: "student-learning-platfor-3b31a.firebaseapp.com",
-    projectId: "student-learning-platfor-3b31a",
-    storageBucket: "student-learning-platfor-3b31a.firebasestorage.app",
-    messagingSenderId: "502944049249",
-    appId: "1:502944049249:web:91aba28fbe5601b9f9e220",
-    measurementId: "G-VYTRG9Q88F"
-  };
+import {
+getFirestore,
+doc,
+setDoc,
+getDoc,
+serverTimestamp
+} from "https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore.js";
 
-  const app = initializeApp(firebaseConfig);
-  const auth = getAuth(app);
+const firebaseConfig = {
+apiKey: "AIzaSyAPFaFg4ofTZQATre1qnHPur_Xz8fLJOFE",
+authDomain: "student-learning-platfor-3b31a.firebaseapp.com",
+projectId: "student-learning-platfor-3b31a",
+storageBucket: "student-learning-platfor-3b31a.firebasestorage.app",
+messagingSenderId: "502944049249",
+appId: "1:502944049249:web:91aba28fbe5601b9f9e220",
+measurementId: "G-VYTRG9Q88F"
+};
 
-  const registerForm = document.getElementById("registerForm");
-  const loginForm = document.getElementById("loginForm");
-  const authBox = document.getElementById("authBox");
-  const dashboard = document.getElementById("dashboard");
-  const authMessage = document.getElementById("authMessage");
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
 
-  document.getElementById("showLogin").onclick = () => {
-    registerForm.classList.add("hidden");
-    loginForm.classList.remove("hidden");
-    authMessage.textContent = "";
-  };
+const registerForm = document.getElementById("registerForm");
+const loginForm = document.getElementById("loginForm");
+const authBox = document.getElementById("authBox");
+const dashboard = document.getElementById("dashboard");
+const authMessage = document.getElementById("authMessage");
 
-  document.getElementById("showRegister").onclick = () => {
-    loginForm.classList.add("hidden");
-    registerForm.classList.remove("hidden");
-    authMessage.textContent = "";
-  };
+document.getElementById("showLogin").onclick = () => {
+registerForm.classList.add("hidden");
+loginForm.classList.remove("hidden");
+authMessage.textContent = "";
+};
 
-  // Student Registration
+document.getElementById("showRegister").onclick = () => {
+loginForm.classList.add("hidden");
+registerForm.classList.remove("hidden");
+authMessage.textContent = "";
+};
 
-  document.getElementById("registerBtn").onclick = async () => {
+// Student Registration
 
-    const name = document.getElementById("studentName").value.trim();
-    const email = document.getElementById("registerEmail").value.trim();
-    const password = document.getElementById("registerPassword").value;
+document.getElementById("registerBtn").onclick = async () => {
 
-    if (!name || !email || !password) {
-      authMessage.textContent = "Please fill all fields.";
-      return;
-    }
+const name = document.getElementById("studentName").value.trim();
+const email = document.getElementById("registerEmail").value.trim();
+const password = document.getElementById("registerPassword").value;
+const studentClass = document.getElementById("studentClass").value;
+const board = document.getElementById("studentBoard").value;
+const medium = document.getElementById("studentMedium").value;
 
-    if (password.length < 6) {
-      authMessage.textContent = "Password must be at least 6 characters.";
-      return;
-    }
+if (!name || !email || !password || !studentClass || !board || !medium) {
+authMessage.textContent = "Please fill all fields.";
+return;
+}
 
-    try {
-      authMessage.textContent = "Creating your account...";
+if (password.length < 6) {
+authMessage.textContent = "Password must be at least 6 characters.";
+return;
+}
 
-      const result = await createUserWithEmailAndPassword(
-        auth,
-        email,
-        password
-      );
+try {
+authMessage.textContent = "Creating your account...";
 
-      await updateProfile(result.user, {
-        displayName: name
-      });
+const result = await createUserWithEmailAndPassword(auth,email,password);
 
-      authMessage.textContent = "Registration successful!";
+await updateProfile(result.user,{displayName:name});
 
-    } catch (error) {
-      authMessage.textContent = error.message;
-    }
-  };
+await setDoc(doc(db,"students",result.user.uid),{
+name:name,
+email:email,
+class:studentClass,
+board:board,
+medium:medium,
+createdAt:serverTimestamp()
+});
 
-  // Student Login
+authMessage.textContent = "Registration successful!";
 
-  document.getElementById("loginBtn").onclick = async () => {
+} catch(error) {
+authMessage.textContent = error.message;
+}
 
-    const email = document.getElementById("loginEmail").value.trim();
-    const password = document.getElementById("loginPassword").value;
+};
 
-    if (!email || !password) {
-      authMessage.textContent = "Please enter email and password.";
-      return;
-    }
+// Student Login
 
-    try {
-      authMessage.textContent = "Logging in...";
+document.getElementById("loginBtn").onclick = async () => {
 
-      await signInWithEmailAndPassword(
-        auth,
-        email,
-        password
-      );
+const email = document.getElementById("loginEmail").value.trim();
+const password = document.getElementById("loginPassword").value;
 
-      authMessage.textContent = "";
+if (!email || !password) {
+authMessage.textContent = "Please enter email and password.";
+return;
+}
 
-    } catch (error) {
-      authMessage.textContent = error.message;
-    }
-  };
+try {
+authMessage.textContent = "Logging in...";
+await signInWithEmailAndPassword(auth,email,password);
+authMessage.textContent = "";
 
-  // Check Login Status
+} catch(error) {
+authMessage.textContent = error.message;
+}
 
-  onAuthStateChanged(auth, (user) => {
+};
 
-    if (user) {
+// Student Dashboard
 
-      authBox.classList.add("hidden");
-      dashboard.classList.remove("hidden");
+onAuthStateChanged(auth,async(user) => {
 
-      document.getElementById("dashboardName").textContent =
-        user.displayName || "Student";
+if(user) {
 
-      document.getElementById("dashboardEmail").textContent =
-        user.email || "";
+authBox.classList.add("hidden");
+dashboard.classList.remove("hidden");
 
-    } else {
+document.getElementById("dashboardName").textContent = user.displayName || "Student";
+document.getElementById("dashboardEmail").textContent = user.email || "";
 
-      dashboard.classList.add("hidden");
-      authBox.classList.remove("hidden");
+try {
+const studentRef = doc(db,"students",user.uid);
+const studentSnap = await getDoc(studentRef);
 
-    }
+if(studentSnap.exists()) {
+const data = studentSnap.data();
 
-  });
+document.getElementById("dashboardName").textContent = data.name || user.displayName || "Student";
+document.getElementById("dashboardClass").textContent = "Class: " + (data.class || "");
+document.getElementById("dashboardBoard").textContent = "Board: " + (data.board || "");
+document.getElementById("dashboardMedium").textContent = "Medium: " + (data.medium || "");
+}
+} catch(error) {
+console.error("Profile loading error:",error);
+}
 
-  // Student Logout
+} else {
 
-  document.getElementById("logoutBtn").onclick = async () => {
+dashboard.classList.add("hidden");
+authBox.classList.remove("hidden");
 
-    try {
-      await signOut(auth);
-      authMessage.textContent = "Logged out successfully.";
+}
 
-    } catch (error) {
-      authMessage.textContent = error.message;
-    }
+});
 
-  };
+// Student Logout
+
+document.getElementById("logoutBtn").onclick = async () => {
+try {
+await signOut(auth);
+authMessage.textContent = "Logged out successfully.";
+} catch(error) {
+authMessage.textContent = error.message;
+}
+};
 
 </script>
 
