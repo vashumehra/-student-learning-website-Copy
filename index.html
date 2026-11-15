@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,14 +15,22 @@ nav a{color:white;text-decoration:none;margin:8px}
 .hero{text-align:center;padding:35px;background:white;border-radius:12px;margin-bottom:25px}
 .hero h2{color:#174ea6;margin-bottom:12px}
 .auth-box{background:white;max-width:450px;margin:25px auto;padding:25px;border-radius:12px;box-shadow:0 3px 12px #0001}
+.dashboard-box{background:white;max-width:900px;margin:25px auto;padding:25px;border-radius:12px;box-shadow:0 3px 12px #0001}
+.profile-header{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;border-bottom:1px solid #eee;padding-bottom:15px;margin-bottom:20px}
 input,select{width:100%;padding:13px;margin:8px 0;border:1px solid #ccc;border-radius:7px;font-size:15px;background:white}
 button{background:#174ea6;color:white;border:0;padding:12px 18px;border-radius:7px;cursor:pointer;margin:7px 3px;font-size:15px}
 button:hover{background:#123d80}
+.btn-secondary{background:#5f6368}
+.btn-secondary:hover{background:#3c4043}
+.btn-danger{background:#d93025}
+.btn-danger:hover{background:#a50e0e}
 .switch{color:#174ea6;cursor:pointer;text-align:center;margin-top:15px}
 .message{margin-top:12px;color:#174ea6;text-align:center;overflow-wrap:anywhere}
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:18px;margin-top:25px}
-.card{background:white;padding:25px;border-radius:10px;text-align:center;box-shadow:0 3px 10px #0001}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;margin-top:20px}
+.card{background:#f8faff;border:1px solid #d2e3fc;padding:25px;border-radius:10px;text-align:center;box-shadow:0 2px 8px #0001;cursor:pointer;transition:transform 0.2s, box-shadow 0.2s}
+.card:hover{transform:translateY(-4px);box-shadow:0 6px 15px rgba(23,78,166,0.15);border-color:#174ea6}
 .card h3{color:#174ea6;margin-bottom:10px}
+.feature-view{background:#f8faff;border:1px solid #d2e3fc;padding:25px;border-radius:10px;margin-top:20px}
 .hidden{display:none}
 footer{background:#123d80;color:white;text-align:center;padding:20px;margin-top:35px}
 </style>
@@ -38,8 +45,7 @@ footer{background:#123d80;color:white;text-align:center;padding:20px;margin-top:
 
 <nav>
 <a href="#home">Home</a>
-<a href="#courses">Study Material</a>
-<a href="#account">Student Account</a>
+<a href="#account">Student Dashboard</a>
 </nav>
 
 <main class="container">
@@ -51,6 +57,7 @@ footer{background:#123d80;color:white;text-align:center;padding:20px;margin-top:
 
 <section id="account">
 
+<!-- Login / Register Box -->
 <div class="auth-box" id="authBox">
 
 <div id="registerForm">
@@ -108,15 +115,28 @@ footer{background:#123d80;color:white;text-align:center;padding:20px;margin-top:
 <p class="message" id="authMessage"></p>
 </div>
 
-<div id="dashboard" class="auth-box hidden">
-<h2>Student Dashboard</h2>
-<p>Welcome, <strong id="dashboardName">Student</strong>!</p>
-<p id="dashboardEmail"></p>
-<p id="dashboardClass"></p>
-<p id="dashboardBoard"></p>
-<p id="dashboardMedium"></p>
+<!-- Student Dashboard -->
+<div id="dashboard" class="dashboard-box hidden">
 
-<h3 style="margin-top:20px">Update Your Profile</h3>
+<div class="profile-header">
+<div>
+<h2>Welcome, <span id="dashboardName" style="color:#174ea6">Student</span>!</h2>
+<p style="margin-top:5px;color:#555">
+<span id="dashboardClass"></span> | 
+<span id="dashboardBoard"></span> | 
+<span id="dashboardMedium"></span>
+</p>
+</div>
+<div>
+<button class="btn-secondary" id="toggleProfileBtn">Edit Profile</button>
+<button class="btn-danger" id="logoutBtn">Logout</button>
+</div>
+</div>
+
+<!-- Profile Update Section (Hidden by default for clean look) -->
+<div id="profileEditSection" class="hidden" style="background:#f9f9f9;padding:15px;border-radius:8px;margin-bottom:20px;border:1px solid #ddd">
+<h3>Update Your Profile</h3>
+<p id="dashboardEmail" style="font-size:14px;color:#666;margin-bottom:10px"></p>
 
 <select id="profileClass">
 <option value="">Select Class</option>
@@ -152,22 +172,49 @@ footer{background:#123d80;color:white;text-align:center;padding:20px;margin-top:
 </select>
 
 <button id="saveProfileBtn">Save Profile</button>
-<button id="logoutBtn">Logout</button>
 <p class="message" id="profileMessage"></p>
 </div>
 
-</section>
-
-<section id="courses">
-<h2 style="text-align:center;color:#174ea6">Learning Features</h2>
+<!-- 6 Feature Cards inside Dashboard -->
+<div id="dashboardCards">
+<h3 style="color:#174ea6;margin-bottom:10px">Your Learning Tools</h3>
 <div class="cards">
-<div class="card"><h3>Study Notes</h3><p>Access subject-wise study notes.</p></div>
-<div class="card"><h3>Online Tests</h3><p>Practice tests and improve performance.</p></div>
-<div class="card"><h3>Live Classes</h3><p>Join live learning sessions.</p></div>
-<div class="card"><h3>Previous Papers</h3><p>Prepare with previous year question papers.</p></div>
-<div class="card"><h3>AI Paper Solver</h3><p>Get help with questions and solutions.</p></div>
-<div class="card"><h3>Premium Account</h3><p>Explore additional learning features.</p></div>
+<div class="card" onclick="openFeature('notes')">
+<h3>📚 Study Notes</h3>
+<p>Access subject-wise study notes for your class.</p>
 </div>
+<div class="card" onclick="openFeature('tests')">
+<h3>📝 Online Tests</h3>
+<p>Practice MCQ tests and check your score.</p>
+</div>
+<div class="card" onclick="openFeature('live')">
+<h3>🎥 Live Classes</h3>
+<p>Join scheduled live learning sessions.</p>
+</div>
+<div class="card" onclick="openFeature('papers')">
+<h3>📄 Previous Year Papers</h3>
+<p>Download and practice past exam papers.</p>
+</div>
+<div class="card" onclick="openFeature('ai')">
+<h3>🤖 AI Paper Solver</h3>
+<p>Get step-by-step solutions to your doubts.</p>
+</div>
+<div class="card" onclick="openFeature('premium')">
+<h3>⭐ Premium Account</h3>
+<p>Unlock special notes and full test series.</p>
+</div>
+</div>
+</div>
+
+<!-- Feature Workspace (Opens when a card is clicked) -->
+<div id="featureWorkspace" class="feature-view hidden">
+<button class="btn-secondary" onclick="closeFeature()">← Back to Dashboard</button>
+<h2 id="featureTitle" style="color:#174ea6;margin-top:15px">Feature Title</h2>
+<div id="featureContent" style="margin-top:15px"></div>
+</div>
+
+</div>
+
 </section>
 
 </main>
@@ -232,10 +279,59 @@ registerForm.classList.remove("hidden");
 authMessage.textContent = "";
 };
 
+// Toggle Profile Edit Section
+document.getElementById("toggleProfileBtn").onclick = () => {
+document.getElementById("profileEditSection").classList.toggle("hidden");
+};
+
+// Open Feature Card
+window.openFeature = (featureKey) => {
+document.getElementById("dashboardCards").classList.add("hidden");
+document.getElementById("featureWorkspace").classList.remove("hidden");
+
+const titleEl = document.getElementById("featureTitle");
+const contentEl = document.getElementById("featureContent");
+const studentInfo = `<strong>${currentStudentData.class || 'Your Class'} (${currentStudentData.board || 'Board'} - ${currentStudentData.medium || 'Medium'})</strong>`;
+
+const features = {
+notes: {
+title: "📚 Study Notes",
+html: `<p>Showing study notes for ${studentInfo}.</p><p style="margin-top:10px;color:#555"><em>Next Step: We will connect this section to Firebase to load real subject-wise PDFs and chapters!</em></p>`
+},
+tests: {
+title: "📝 Online Tests",
+html: `<p>Practice tests for ${studentInfo}.</p><p style="margin-top:10px;color:#555"><em>Status: Coming soon in the next update.</em></p>`
+},
+live: {
+title: "🎥 Live Classes",
+html: `<p>Live classes schedule for ${studentInfo}.</p><p style="margin-top:10px;color:#555"><em>Status: Coming soon in the next update.</em></p>`
+},
+papers: {
+title: "📄 Previous Year Papers",
+html: `<p>Question papers for ${studentInfo}.</p><p style="margin-top:10px;color:#555"><em>Status: Coming soon in the next update.</em></p>`
+},
+ai: {
+title: "🤖 AI Paper Solver",
+html: `<p>Ask any question from ${studentInfo} syllabus.</p><p style="margin-top:10px;color:#555"><em>Status: Coming soon in the next update.</em></p>`
+},
+premium: {
+title: "⭐ Premium Account",
+html: `<p>Upgrade your account for ${studentInfo} full access.</p><p style="margin-top:10px;color:#555"><em>Status: Coming soon in the next update.</em></p>`
+}
+};
+
+titleEl.textContent = features[featureKey].title;
+contentEl.innerHTML = features[featureKey].html;
+};
+
+// Close Feature Card and return to Dashboard
+window.closeFeature = () => {
+document.getElementById("featureWorkspace").classList.add("hidden");
+document.getElementById("dashboardCards").classList.remove("hidden");
+};
+
 // Student Registration
-
 document.getElementById("registerBtn").onclick = async () => {
-
 const name = document.getElementById("studentName").value.trim();
 const email = document.getElementById("registerEmail").value.trim();
 const password = document.getElementById("registerPassword").value;
@@ -255,9 +351,7 @@ return;
 
 try {
 authMessage.textContent = "Creating your account...";
-
 const result = await createUserWithEmailAndPassword(auth,email,password);
-
 await updateProfile(result.user,{displayName:name});
 
 await setDoc(doc(db,"students",result.user.uid),{
@@ -270,17 +364,13 @@ createdAt:serverTimestamp()
 });
 
 authMessage.textContent = "Registration successful!";
-
 } catch(error) {
 authMessage.textContent = error.message;
 }
-
 };
 
 // Student Login
-
 document.getElementById("loginBtn").onclick = async () => {
-
 const email = document.getElementById("loginEmail").value.trim();
 const password = document.getElementById("loginPassword").value;
 
@@ -293,36 +383,24 @@ try {
 authMessage.textContent = "Logging in...";
 await signInWithEmailAndPassword(auth,email,password);
 authMessage.textContent = "";
-
 } catch(error) {
 authMessage.textContent = error.message;
 }
-
 };
 
-// Student Dashboard and Old Account Profile Creation
-
+// Auth State Observer
 onAuthStateChanged(auth,async(user) => {
-
 if(user) {
-
 authBox.classList.add("hidden");
 dashboard.classList.remove("hidden");
 
-document.getElementById("dashboardName").textContent = user.displayName || "Student";
-document.getElementById("dashboardEmail").textContent = user.email || "";
-
 try {
-
 const studentRef = doc(db,"students",user.uid);
 const studentSnap = await getDoc(studentRef);
 
 if(studentSnap.exists()) {
-
 currentStudentData = studentSnap.data();
-
 } else {
-
 currentStudentData = {
 name: user.displayName || "Student",
 email: user.email || "",
@@ -330,73 +408,49 @@ class: "",
 board: "",
 medium: ""
 };
-
 await setDoc(studentRef,{
 ...currentStudentData,
 createdAt: serverTimestamp()
 });
-
 }
 
-document.getElementById("dashboardName").textContent =
-currentStudentData.name || user.displayName || "Student";
-
-document.getElementById("dashboardEmail").textContent =
-currentStudentData.email || user.email || "";
-
-document.getElementById("dashboardClass").textContent =
-"Class: " + (currentStudentData.class || "Not selected");
-
-document.getElementById("dashboardBoard").textContent =
-"Board: " + (currentStudentData.board || "Not selected");
-
-document.getElementById("dashboardMedium").textContent =
-"Medium: " + (currentStudentData.medium || "Not selected");
+document.getElementById("dashboardName").textContent = currentStudentData.name || user.displayName || "Student";
+document.getElementById("dashboardEmail").textContent = "Email: " + (currentStudentData.email || user.email || "");
+document.getElementById("dashboardClass").textContent = "Class: " + (currentStudentData.class || "Not selected");
+document.getElementById("dashboardBoard").textContent = "Board: " + (currentStudentData.board || "Not selected");
+document.getElementById("dashboardMedium").textContent = "Medium: " + (currentStudentData.medium || "Not selected");
 
 document.getElementById("profileClass").value = currentStudentData.class || "";
 document.getElementById("profileBoard").value = currentStudentData.board || "";
 document.getElementById("profileMedium").value = currentStudentData.medium || "";
 
 } catch(error) {
-
 console.error("Profile loading error:",error);
-document.getElementById("profileMessage").textContent =
-"Profile error: " + error.message;
-
+document.getElementById("profileMessage").textContent = "Profile error: " + error.message;
 }
 
 } else {
-
 dashboard.classList.add("hidden");
 authBox.classList.remove("hidden");
-
+closeFeature();
 }
-
 });
 
 // Save or Update Student Profile
-
 document.getElementById("saveProfileBtn").onclick = async () => {
-
 const user = auth.currentUser;
-
-if(!user) {
-document.getElementById("profileMessage").textContent = "Please login first.";
-return;
-}
+if(!user) return;
 
 const studentClass = document.getElementById("profileClass").value;
 const board = document.getElementById("profileBoard").value;
 const medium = document.getElementById("profileMedium").value;
 
 if(!studentClass || !board || !medium) {
-document.getElementById("profileMessage").textContent =
-"Please select Class, Board and Medium.";
+document.getElementById("profileMessage").textContent = "Please select Class, Board and Medium.";
 return;
 }
 
 try {
-
 document.getElementById("profileMessage").textContent = "Saving profile...";
 
 await setDoc(doc(db,"students",user.uid),{
@@ -416,20 +470,18 @@ document.getElementById("dashboardClass").textContent = "Class: " + studentClass
 document.getElementById("dashboardBoard").textContent = "Board: " + board;
 document.getElementById("dashboardMedium").textContent = "Medium: " + medium;
 
-document.getElementById("profileMessage").textContent =
-"Profile saved successfully!";
+document.getElementById("profileMessage").textContent = "Profile saved successfully!";
+setTimeout(() => {
+document.getElementById("profileEditSection").classList.add("hidden");
+document.getElementById("profileMessage").textContent = "";
+}, 1500);
 
 } catch(error) {
-
-document.getElementById("profileMessage").textContent =
-"Error: " + error.message;
-
+document.getElementById("profileMessage").textContent = "Error: " + error.message;
 }
-
 };
 
 // Student Logout
-
 document.getElementById("logoutBtn").onclick = async () => {
 try {
 await signOut(auth);
